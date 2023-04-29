@@ -1,14 +1,14 @@
 image:
-  repository: harbor.k8s.local/course/devops-demo
+  repository: harbor.chenjie.info/chenjie/devops-demo
   tag: latest
   pullPolicy: IfNotPresent
 
 ingress:
   enabled: true
-  ingressClassName: nginx
+  ingressClassName: traefik
   path: /
   hosts:
-    - devops-demo.k8s.local
+    - devops-demo.chenjie.info
 
 resources:
   limits:

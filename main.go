@@ -1,29 +1,29 @@
 package main
 
 import (
-  "net/http"
+	"net/http"
 
-  "github.com/gin-gonic/gin"
-  "github.com/sirupsen/logrus"
+	"github.com/gin-gonic/gin"
+	"github.com/sirupsen/logrus"
 )
 
 func main() {
-  r := gin.Default()
+	r := gin.Default()
 
-  r.GET("/", func(c *gin.Context) {
-    c.JSON(http.StatusOK, gin.H {
-      "msg": "Hello Tekton On GitLab With ArgoCD",
-    })
-  })
+	r.GET("/", func(c *gin.Context) {
+		c.JSON(http.StatusOK, gin.H{
+			"msg": "this is pipeline test by chenjie.info",
+		})
+	})
 
-  r.GET("/health", func(c *gin.Context) {
-    c.JSON(http.StatusOK, gin.H {
-      "health": true,
-    })
-  })
+	r.GET("/health", func(c *gin.Context) {
+		c.JSON(http.StatusOK, gin.H{
+			"health": true,
+		})
+	})
 
-  if err := r.Run(":8080"); err != nil {
-    logrus.WithError(err).Fatal("Couldn't listen")
-  }
+	if err := r.Run(":8080"); err != nil {
+		logrus.WithError(err).Fatal("Couldn't listen")
+	}
 
 }

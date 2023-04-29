@@ -22,15 +22,16 @@ podTemplate(label: label, containers: [
   containerTemplate(name: 'helm', image: 'cnych/helm', command: 'cat', ttyEnabled: true),
   containerTemplate(name: 'kubectl', image: 'cnych/kubectl', command: 'cat', ttyEnabled: true)
 ], serviceAccount: 'jenkins', envVars: [
-  envVar(key: 'DOCKER_HOST', value: 'tcp://docker-dind:2375') 
+  envVar(key: 'DOCKER_HOST', value: 'tcp://docker-dind:2375'),
+  envVar(key: 'GIT_SSL_NO_VERIFY', value: 'true')
 ]) {
   node(label) {
     def myRepo = checkout scm
     // 获取 git commit id 作为镜像标签
     def imageTag = sh(script: "git rev-parse --short HEAD", returnStdout: true).trim()
     // 仓库地址
-    def registryUrl = "harbor.k8s.local"
-    def imageEndpoint = "course/devops-demo"
+    def registryUrl = "harbor.chenjie.info"
+    def imageEndpoint = "chenjie/devops-demo"
     // 镜像
     def image = "${registryUrl}/${imageEndpoint}:${imageTag}"
 
